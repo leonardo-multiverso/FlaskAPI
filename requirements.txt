@@ -1,0 +1,7 @@
+Flask
+flask_marshmallow
+marshmallow_sqlalchemy
+marshmallow
+Flask-SQLAlchemy
+mysqlclient
+PyJWT

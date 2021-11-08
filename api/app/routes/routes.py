@@ -1,13 +1,13 @@
 from app import app
 from flask import jsonify
-from ..views import users, helper
+from ..views import users, authenticator
 
-@app.route('/', methods=['GET'])
-@helper.token_required
+@app.route('/', methods=["GET"])
+@authenticator.token_required
 def root(current_user):
-    return jsonify({'mensagem': f'Hello {current_user.name}'})
+    return jsonify({'mensagem': 'Hello World!'})
 
-@app.route('/users', methods=['POST'])
+@app.route('/users', methods=["POST"])
 def post_user():
     return users.post_user()
 
@@ -15,19 +15,18 @@ def post_user():
 def update_user(id):
     return users.update_user(id)
 
-@app.route('/users', methods=['GET'])
-@helper.token_required
-def get_users(current_user):
+@app.route('/users', methods=["GET"])
+def get_users():
     return users.get_users()
 
-@app.route('/users/<id>', methods=['GET'])
+@app.route('/users/<id>', methods=["GET"])
 def get_user(id):
     return users.get_user(id)
 
-@app.route('/users/<id>', methods=['DELETE'])
+@app.route('/users/<id>', methods=["DELETE"])
 def delete_user(id):
     return users.delete_user(id)
-
+    
 @app.route('/auth', methods=['POST'])
 def authenticate():
-    return helper.auth()
+    return authenticator.auth()
